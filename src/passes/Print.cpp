@@ -2022,6 +2022,11 @@ struct PrintExpressionContents
     printMedium(o, "table.grow ");
     printName(curr->table, o);
   }
+  void visitTableInit(TableInit* curr) {
+    printMedium(o, "table.init ");
+    printName(curr->table, o);
+    printName(curr->elem, o);
+  }
   void visitTry(Try* curr) {
     printMedium(o, "try");
     if (curr->name.is()) {

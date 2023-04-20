@@ -707,6 +707,7 @@ public:
     TableSetId,
     TableSizeId,
     TableGrowId,
+    TableInitId,
     TryId,
     ThrowId,
     RethrowId,
@@ -1425,6 +1426,21 @@ public:
 
   void finalize();
 };
+
+class TableInit : public SpecificExpression<Expression::TableInitId> {
+public:
+  TableInit() {}
+  TableInit(MixedArena& allocator) : TableInit() {}
+
+  Name table;
+  Name elem;
+  Expression* destOffset;
+  Expression* srcOffset;
+  Expression* count;
+
+  void finalize();
+};
+
 
 class Try : public SpecificExpression<Expression::TryId> {
 public:

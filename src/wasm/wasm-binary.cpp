@@ -3934,6 +3934,9 @@ BinaryConsts::ASTNodes WasmBinaryBuilder::readExpression(Expression*& curr) {
       if (maybeVisitTableGrow(curr, opcode)) {
         break;
       }
+      if (maybeVisitTableInit(curr, opcode)) {
+        break;
+      }
       throwError("invalid code after misc prefix: " + std::to_string(opcode));
       break;
     }
@@ -5294,6 +5297,28 @@ bool WasmBinaryBuilder::maybeVisitTableGrow(Expression*& out, uint32_t code) {
   auto* curr = allocator.alloc<TableGrow>();
   curr->delta = popNonVoidExpression();
   curr->value = popNonVoidExpression();
+  curr->finalize();
+  // Defer setting the table name for later, when we know it.
+  tableRefs[tableIdx].push_back(&curr->table);
+  out = curr;
+  return true;
+}
+
+// TODO
+bool WasmBinaryBuilder::maybeVisitTableInit(Expression*& out, uint32_t code) {
+  if (code != BinaryConsts::TableInit) {
+    return false;
+  }
+  Index tableIdx = getU32LEB();
+  if (tableIdx >= wasm.tables.size()) {
+    throwError("bad table index");
+  }
+  Index elemIdx = getU32LEB();
+  if (elemIdx >= wasm.elementSegments.size()) {
+    throwError("bad elem index");
+  }
+
+  auto* curr = allocator.alloc<TableInit>();
   curr->finalize();
   // Defer setting the table name for later, when we know it.
   tableRefs[tableIdx].push_back(&curr->table);

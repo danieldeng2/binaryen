@@ -2346,6 +2346,7 @@ template<typename Ctx> Result<typename Ctx::InstrT> makeTableGet(Ctx&, Index);
 template<typename Ctx> Result<typename Ctx::InstrT> makeTableSet(Ctx&, Index);
 template<typename Ctx> Result<typename Ctx::InstrT> makeTableSize(Ctx&, Index);
 template<typename Ctx> Result<typename Ctx::InstrT> makeTableGrow(Ctx&, Index);
+template<typename Ctx> Result<typename Ctx::InstrT> makeTableInit(Ctx&, Index);
 template<typename Ctx> Result<typename Ctx::InstrT> makeTry(Ctx&, Index);
 template<typename Ctx>
 Result<typename Ctx::InstrT>
@@ -3414,6 +3415,12 @@ template<typename Ctx>
 Result<typename Ctx::InstrT> makeTableGrow(Ctx& ctx, Index pos) {
   return ctx.in.err("unimplemented instruction");
 }
+
+template<typename Ctx>
+Result<typename Ctx::InstrT> makeTableInit(Ctx& ctx, Index pos) {
+  return ctx.in.err("unimplemented instruction");
+}
+
 
 template<typename Ctx>
 Result<typename Ctx::InstrT> makeTry(Ctx& ctx, Index pos) {

@@ -1370,6 +1370,7 @@ public:
   Flow visitTableSet(TableSet* curr) { WASM_UNREACHABLE("unimp"); }
   Flow visitTableSize(TableSize* curr) { WASM_UNREACHABLE("unimp"); }
   Flow visitTableGrow(TableGrow* curr) { WASM_UNREACHABLE("unimp"); }
+  Flow visitTableInit(TableInit* curr) { WASM_UNREACHABLE("unimp"); }
   Flow visitTry(Try* curr) { WASM_UNREACHABLE("unimp"); }
   Flow visitThrow(Throw* curr) {
     NOTE_ENTER("Throw");
@@ -2185,6 +2186,9 @@ public:
     NOTE_ENTER("TableGrow");
     return Flow(NONCONSTANT_FLOW);
   }
+  Flow visitTableInit(TableInit* curr) { NOTE_ENTER("TableGrow");
+    return Flow(NONCONSTANT_FLOW); }
+
   Flow visitLoad(Load* curr) {
     NOTE_ENTER("Load");
     return Flow(NONCONSTANT_FLOW);

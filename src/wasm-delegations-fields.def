@@ -539,6 +539,16 @@ switch (DELEGATE_ID) {
     DELEGATE_END(TableGrow);
     break;
   }
+  case Expression::Id::TableInitId: {
+    DELEGATE_START(TableInit);
+    DELEGATE_FIELD_CHILD(TableInit, count);
+    DELEGATE_FIELD_CHILD(TableInit, srcOffset);
+    DELEGATE_FIELD_CHILD(TableInit, destOffset);
+    DELEGATE_FIELD_NAME(TableInit, elem);
+    DELEGATE_FIELD_NAME(TableInit, table);
+    DELEGATE_END(TableInit);
+    break;
+  }
   case Expression::Id::TryId: {
     DELEGATE_START(Try);
     DELEGATE_FIELD_SCOPE_NAME_USE(Try, delegateTarget);

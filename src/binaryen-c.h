@@ -1001,6 +1001,16 @@ BinaryenTableGrow(BinaryenModuleRef module,
                   const char* name,
                   BinaryenExpressionRef value,
                   BinaryenExpressionRef delta);
+
+BINARYEN_API BinaryenExpressionRef
+BinaryenTableInit(BinaryenModuleRef module,
+                  const char* table,
+                  const char* elem,
+                  BinaryenExpressionRef destOffset,
+                  BinaryenExpressionRef srcOffset,
+                  BinaryenExpressionRef count
+                  );
+
 // Try: name can be NULL. delegateTarget should be NULL in try-catch.
 BINARYEN_API BinaryenExpressionRef
 BinaryenTry(BinaryenModuleRef module,

@@ -62,6 +62,7 @@ DELEGATE(TableGet);
 DELEGATE(TableSet);
 DELEGATE(TableSize);
 DELEGATE(TableGrow);
+DELEGATE(TableInit);
 DELEGATE(Try);
 DELEGATE(Throw);
 DELEGATE(Rethrow);

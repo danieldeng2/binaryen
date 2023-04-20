@@ -190,6 +190,9 @@ struct ReferenceFinder : public PostWalker<ReferenceFinder> {
   void visitTableGrow(TableGrow* curr) {
     note({ModuleElementKind::Table, curr->table});
   }
+  void visitTableInit(TableInit* curr) {
+    note({ModuleElementKind::Table, curr->table});
+  }
   void visitThrow(Throw* curr) { note({ModuleElementKind::Tag, curr->tag}); }
   void visitTry(Try* curr) {
     for (auto tag : curr->catchTags) {

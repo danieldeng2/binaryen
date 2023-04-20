@@ -1682,6 +1682,18 @@ BinaryenExpressionRef BinaryenTableGrow(BinaryenModuleRef module,
       .makeTableGrow(name, (Expression*)value, (Expression*)delta));
 }
 
+BinaryenExpressionRef BinaryenTableInit(BinaryenModuleRef module,
+                  const char* table,
+                  const char* elem,
+                  BinaryenExpressionRef destOffset,
+                  BinaryenExpressionRef srcOffset,
+                  BinaryenExpressionRef count
+                  ) {
+  return static_cast<Expression*>(
+    Builder(*(Module*)module)
+      .makeTableInit(table, table, (Expression*)srcOffset, (Expression*)destOffset, (Expression*)count));
+}
+
 BinaryenExpressionRef BinaryenTry(BinaryenModuleRef module,
                                   const char* name,
                                   BinaryenExpressionRef body,

@@ -439,6 +439,7 @@ public:
   void visitTableSet(TableSet* curr);
   void visitTableSize(TableSize* curr);
   void visitTableGrow(TableGrow* curr);
+  void visitTableInit(TableInit* curr);
   void noteDelegate(Name name, Expression* curr);
   void noteRethrow(Name name, Expression* curr);
   void visitTry(Try* curr);
@@ -2273,6 +2274,10 @@ void FunctionValidator::visitTableGrow(TableGrow* curr) {
                   curr,
                   "table.grow must match table index type");
   }
+}
+
+// TODO
+void FunctionValidator::visitTableInit(TableInit* curr) {
 }
 
 void FunctionValidator::noteDelegate(Name name, Expression* curr) {

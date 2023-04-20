@@ -759,6 +759,16 @@ public:
     ret->finalize();
     return ret;
   }
+  TableInit* makeTableInit(Name table, Name elem, Expression* srcOffset, Expression* destOffset, Expression* count) {
+    auto* ret = wasm.allocator.alloc<TableInit>();
+    ret->table = table;
+    ret->elem = elem;
+    ret->srcOffset = srcOffset;
+    ret->destOffset = destOffset;
+    ret->count = count;
+    ret->finalize();
+    return ret;
+  }
 
 private:
   Try* makeTry(Name name,
